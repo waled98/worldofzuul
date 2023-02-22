@@ -21,6 +21,9 @@ public class Room
     public Room southExit;
     public Room eastExit;
     public Room westExit;
+    public Room upExit;
+    public Room downExit;
+
 
     /**
      * Create a room described "description". Initially, it has
@@ -41,7 +44,7 @@ public class Room
      * @param south The south exit.
      * @param west The west exit.
      */
-    public void setExits(Room north, Room east, Room south, Room west) 
+    public void setExits(Room north, Room east, Room south, Room west, Room up, Room down )
     {
         if(north != null) {
             northExit = north;
@@ -55,6 +58,12 @@ public class Room
         if(west != null) {
             westExit = west;
         }
+        if(up != null) {
+            upExit = up;
+        }
+        if(down != null) {
+            downExit = down;
+        }
     }
 
     /**
@@ -63,6 +72,32 @@ public class Room
     public String getDescription()
     {
         return description;
+    }
+
+    @Override
+    public String toString() {
+        String returnvalue = "";
+
+        returnvalue = "\n You are " + getDescription() + "\n Exits: ";
+        if(northExit != null) {
+            returnvalue = returnvalue + "north ";
+        }
+        if(eastExit != null) {
+            returnvalue = returnvalue + "east ";
+        }
+        if(southExit != null) {
+            returnvalue = returnvalue + "south ";
+        }
+        if(westExit != null) {
+            returnvalue = returnvalue + "west ";
+        }
+        if(upExit != null) {
+            returnvalue = returnvalue + "up ";
+        }
+        if(downExit != null) {
+            returnvalue = returnvalue + "down ";
+        }
+        return  returnvalue;
     }
 
 }
