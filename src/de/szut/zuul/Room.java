@@ -1,5 +1,7 @@
 package de.szut.zuul;
 
+import java.util.HashMap;
+
 /**
  * Class Room - a room in an adventure game.
  *
@@ -17,29 +19,11 @@ package de.szut.zuul;
 public class Room 
 {
     private String description;
-    private Room northExit;
-    private Room southExit;
-    private Room eastExit;
-    private Room westExit;
-    private Room upExit;
-    private Room downExit;
+
+    private HashMap<String, Room> Exits;
 
     public Room getExit(String direction){
-        switch (direction) {
-            case "north":
-                return northExit;
-            case "east":
-                return eastExit;
-            case "south":
-                return southExit;
-            case "west":
-                return westExit;
-            case "up":
-                return upExit;
-            case "down":
-                return downExit;
-        }
-        return null;
+        return Exits.get(direction);
     }
 
 
@@ -52,6 +36,7 @@ public class Room
     public Room(String description) 
     {
         this.description = description;
+        Exits = new HashMap<String, Room>();
     }
 
     /**
@@ -62,26 +47,9 @@ public class Room
      * @param south The south exit.
      * @param west The west exit.
      */
-    public void setExits(Room north, Room east, Room south, Room west, Room up, Room down )
+    public void setExits(String key, Room neighbor)
     {
-        if(north != null) {
-            northExit = north;
-        }
-        if(east != null) {
-            eastExit = east;
-        }
-        if(south != null) {
-            southExit = south;
-        }
-        if(west != null) {
-            westExit = west;
-        }
-        if(up != null) {
-            upExit = up;
-        }
-        if(down != null) {
-            downExit = down;
-        }
+        Exits.put(key, neighbor);
     }
 
     /**
@@ -96,23 +64,8 @@ public class Room
         String returnvalue = "";
 
         returnvalue = "\n You are " + getDescription() + "\n Exits: ";
-        if(northExit != null) {
-            returnvalue = returnvalue + "north ";
-        }
-        if(eastExit != null) {
-            returnvalue = returnvalue + "east ";
-        }
-        if(southExit != null) {
-            returnvalue = returnvalue + "south ";
-        }
-        if(westExit != null) {
-            returnvalue = returnvalue + "west ";
-        }
-        if(upExit != null) {
-            returnvalue = returnvalue + "up ";
-        }
-        if(downExit != null) {
-            returnvalue = returnvalue + "down ";
+        for (String key: Exits.keySet()) {
+            returnvalue = returnvalue + key + " ";
         }
         return  returnvalue;
     }

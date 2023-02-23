@@ -52,18 +52,29 @@ public class Game
         magician_room = new Room("in the magician's room");
 
         // initialise room exits
-        marketsquare.setExits(tavern, templePyramid, null, sacrificialSite, null, null);
-        templePyramid.setExits(hut, null, null, marketsquare, magician_room, basement);
-        tavern.setExits(null, hut, marketsquare, null,null, null);
-        sacrificialSite.setExits(null, marketsquare, null , null,null,cave);
-        hut.setExits(null, jungle, templePyramid, tavern,null, null);
-        jungle.setExits(null, null, null, hut,null, null);
-        secretPassage.setExits(null, basement, null, cave,null, null);
-        cave.setExits(null, secretPassage, beach, null, sacrificialSite,null);
-        beach.setExits(cave, null, null, null,null, null);
-        basement.setExits(null, null, null, secretPassage,templePyramid,null);
-        magician_room.setExits(null, null, null, null, null, templePyramid);
-
+        marketsquare.setExits("north",tavern);
+        marketsquare.setExits("east", templePyramid);
+        marketsquare.setExits("west", sacrificialSite);
+        templePyramid.setExits("north", hut);
+        templePyramid.setExits("west", marketsquare);
+        templePyramid.setExits("up", magician_room);
+        templePyramid.setExits("down", basement);
+        tavern.setExits("south", marketsquare);
+        tavern.setExits("east", hut);
+        sacrificialSite.setExits("down", cave);
+        sacrificialSite.setExits("east", marketsquare);
+        hut.setExits("east", jungle);
+        hut.setExits("south", templePyramid);
+        hut.setExits("west", tavern);
+        jungle.setExits("west", hut);
+        secretPassage.setExits("east", basement);
+        secretPassage.setExits("west", cave);
+        cave.setExits("east", secretPassage);
+        cave.setExits("south", beach);
+        beach.setExits("north", cave);
+        basement.setExits("up", templePyramid);
+        basement.setExits("west", secretPassage);
+        magician_room.setExits("down", templePyramid);
 
         currentRoom = marketsquare;  // start game on marketsquare
     }
