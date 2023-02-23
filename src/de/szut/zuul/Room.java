@@ -63,11 +63,20 @@ public class Room
     public String exitsToString() {
         String returnvalue = "";
 
-        returnvalue = "\n You are " + getDescription() + "\n Exits: ";
         for (String key: Exits.keySet()) {
             returnvalue = returnvalue + key + " ";
         }
         return  returnvalue;
+    }
+
+    public String getLongDescription() {
+        String returnvalue = "";
+
+        returnvalue = "\n You are " + getDescription() + "\n Exits: ";
+        returnvalue = returnvalue + exitsToString();
+
+        return  returnvalue;
+
     }
 
 }
