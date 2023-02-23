@@ -16,13 +16,31 @@ package de.szut.zuul;
  */
 public class Room 
 {
-    public String description;
-    public Room northExit;
-    public Room southExit;
-    public Room eastExit;
-    public Room westExit;
-    public Room upExit;
-    public Room downExit;
+    private String description;
+    private Room northExit;
+    private Room southExit;
+    private Room eastExit;
+    private Room westExit;
+    private Room upExit;
+    private Room downExit;
+
+    public Room getExit(String direction){
+        switch (direction) {
+            case "north":
+                return northExit;
+            case "east":
+                return eastExit;
+            case "south":
+                return southExit;
+            case "west":
+                return westExit;
+            case "up":
+                return upExit;
+            case "down":
+                return downExit;
+        }
+        return null;
+    }
 
 
     /**
@@ -74,8 +92,7 @@ public class Room
         return description;
     }
 
-    @Override
-    public String toString() {
+    public String exitsToString() {
         String returnvalue = "";
 
         returnvalue = "\n You are " + getDescription() + "\n Exits: ";
