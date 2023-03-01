@@ -42,14 +42,7 @@ public class Room
         items = new HashMap<String, Item>();
     }
 
-    /**
-     * Define the exits of this room.  Every direction either leads
-     * to another room or is null (no exit there).
-     * @param north The north exit.
-     * @param east The east east.
-     * @param south The south exit.
-     * @param west The west exit.
-     */
+
     public void setExits(String key, Room neighbor)
     {
         Exits.put(key, neighbor);
@@ -96,5 +89,15 @@ public class Room
         returnvalue = returnvalue + exitsToString() + "\n" +  getItemString();
 
         return  returnvalue;
+    }
+    public Item removeItem(String name) {
+        Item item = null;
+        for (var itm: items.values()) {
+            if(itm.getName().equals(name)) {
+                item = itm;
+            }
+        }
+        items.remove(item.getName());
+        return item;
     }
 }
