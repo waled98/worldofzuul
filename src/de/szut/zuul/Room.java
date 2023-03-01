@@ -22,6 +22,8 @@ public class Room
 
     private HashMap<String, Room> Exits;
 
+    public HashMap<String, Item> items;
+
     public Room getExit(String direction){
         return Exits.get(direction);
     }
@@ -37,6 +39,7 @@ public class Room
     {
         this.description = description;
         Exits = new HashMap<String, Room>();
+        items = new HashMap<String, Item>();
     }
 
     /**
@@ -59,7 +62,24 @@ public class Room
     {
         return description;
     }
+    public void setItem(Item newItem) {
+        this.items.put(newItem.getName(), newItem);
+    }
+    public Item getItem(String itemName) {
+        return items.get(itemName);
+    }
+    public String getItemString() {
+        String itemString = "Items in this room:\n";
+        if (!items.values().isEmpty()){
+            for (Item item : items.values()) {
+                itemString += "- " + item.toString() + "\n";
+            }
+        } else {
+            itemString += "None";
+        }
 
+        return itemString;
+    }
     public String exitsToString() {
         String returnvalue = "";
 
@@ -73,9 +93,8 @@ public class Room
         String returnvalue = "";
 
         returnvalue = "\n You are " + getDescription() + "\n Exits: ";
-        returnvalue = returnvalue + exitsToString();
+        returnvalue = returnvalue + exitsToString() + "\n" +  getItemString();
 
         return  returnvalue;
     }
-
 }

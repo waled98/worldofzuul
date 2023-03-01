@@ -76,6 +76,16 @@ public class Game
         basement.setExits("west", secretPassage);
         magician_room.setExits("down", templePyramid);
 
+        marketsquare.setItem(new Item("Bow", "a wooden bow", 0.5));
+        cave.setItem(new Item("Treasure", "a small treasure chest filled with coins", 7.5));
+        magician_room.setItem(new Item("Arrows", "a quiver with various  arrows", 1));
+        jungle.setItem(new Item("Plant", "a healing plant", 0.5));
+        jungle.setItem(new Item("Cocoa", "a small cocoa tree", 5));
+        sacrificialSite.setItem(new Item("Knife", "a very sharp, large knife", 1));
+        hut.setItem(new Item("Spear", "a spear with a matching sling", 5.0));
+        tavern.setItem(new Item("Food", "a plate of hearty meat and cornmeal", 0.5));
+        basement.setItem(new Item("Jewelry", "a very pretty headdress", 1));
+
         currentRoom = marketsquare;  // start game on marketsquare
     }
 
